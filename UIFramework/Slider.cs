@@ -44,10 +44,10 @@ namespace UIFramework {
             }
         }
 
-        public Slider(Interface parent, Vector2 position, Vector2 size, double originValue, double changeRate, double min, double max, int textSize, TextOrientation orientation, Color? foreGroundColor, Color? backGroundColor, bool pollEvents, bool addToUI, bool isFrontElement)
+        public Slider(Interface parent, Vector2 position, Vector2 size, double originValue, double changeRate, double min, double max, int textSize, TextOrientation orientation = TextOrientation.Center, Color? foreGroundColor = null, Color? backGroundColor = null, bool pollEvents = true, bool addToUI = true, bool isFrontElement = false)
             : base(parent, position, size, ButtonListSide.LeftRight, pollEvents, addToUI, isFrontElement) {
-            fgColor = new Color[] { foreGroundColor.HasValue ? foreGroundColor.Value : UI.SurfaceColor };
-            bgColor = new Color[] { backGroundColor.HasValue ? backGroundColor.Value : UI.BGColor };
+            fgColor = new Color[] { foreGroundColor ?? UI.SurfaceColor };
+            bgColor = new Color[] { backGroundColor ?? UI.BGColor };
             value = originValue;
             this.changeRate = changeRate;
             minimum = min;
@@ -71,8 +71,7 @@ namespace UIFramework {
         }
 
         public void OnValueChanged() {
-            if (ValueChanged != null)
-                ValueChanged(this);
+            ValueChanged?.Invoke(this);
         }
 
         public void SetText(string text) {

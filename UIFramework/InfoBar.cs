@@ -35,17 +35,17 @@ namespace UIFramework {
 
         public int Count { get { return elements.Count; } }
 
-        public InfoBar(Interface parent)
+        public InfoBar(Interface parent, int fontSize = 14)
             : base(parent, ButtonListSide.TopBottom, false, true, true) {
             elements = new List<Element>();
-            ySize = 20;
+            ySize = 25;
             Size = new Vector2(UI.ScreenSize.X, ySize);
             Position = new Vector2(0, 0);
 
             surfaceColor = new Color[] { UI.SurfaceColor };
             bgColor = new Color[] { UI.BGColor };
             buttonSize = new Vector2(10, ySize);
-            fontSize = 12;
+            this.fontSize = fontSize;
         }
 
         protected void UpdateOrigin() {

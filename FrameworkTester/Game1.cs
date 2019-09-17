@@ -15,6 +15,10 @@ namespace FrameworkTester {
         Button addButton;
         Button remButton;
         ListBox lb;
+        ProgressBar pbProgress;
+        Slider sSlider;
+        InfoBar ibMenu;
+
 
         public Game1() {
             graphics = new GraphicsDeviceManager(this);
@@ -33,6 +37,12 @@ namespace FrameworkTester {
             addButton = new Button(null, "Add Item", 14, TextOrientation.Left, new Vector2(100, 150), new Vector2(100, 25));
             remButton = new Button(null, "Remove Item", 14, TextOrientation.Left, new Vector2(225, 150), new Vector2(125, 25));
             lb = new ListBox(null, 14, TextOrientation.Left, new Vector2(100, 200), new Vector2(250, 500), null, null, null, null);
+            pbProgress = new ProgressBar(null, new Vector2(400, 200), new Vector2(100, 25), 0, 100, 75, 14, false, null, null, null, null);
+            sSlider = new Slider(null, new Vector2(400, 250), new Vector2(100, 25), 50, 1, 0, 100, 14, TextOrientation.Center, null, null, true, true, true);
+            ibMenu = new InfoBar(null);
+            
+            ibMenu.AddElement("File");
+            ibMenu.AddElement("Edit");
             Window window = new Window(null, null, "Stuff", TextOrientation.Left, Vector2.Zero, new Vector2(200), true, true, true, true);
             window.Open(new Vector2(100, 100));
 
@@ -52,20 +62,17 @@ namespace FrameworkTester {
             Content.Unload();
         }
 
-        float counter;
         protected override void Update(GameTime gameTime) {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            counter++;
-            if (counter > 100000000)
-                counter = 0;
 
+            //This updates the user interface
             UI.Update();
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime) {
-            GraphicsDevice.Clear(new Color(200, 200, 255));
+            GraphicsDevice.Clear(Color.White);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied, SamplerState.PointWrap, null, null, null, null);
             UI.Draw(spriteBatch);
