@@ -10,3 +10,7 @@ You can simply include the UIFramework.dll as a reference to any Monogame projec
 
 ## Information
 This was coded a long time ago so I can't guarantee that it still works flawlessly. Plus, there are a lot of questionable design choices and difficult to understand code segments, so it might take some getting used to.
+
+## License
+
+This project is licensed under the MIT License.
